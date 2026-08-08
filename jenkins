@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master',
+                git branch: 'main',
                     url: 'git@github.com:codefeeding99/Testing-and-Builing-using-pipe-line.git',
                     credentialsId: 'pipeline key'
             }
