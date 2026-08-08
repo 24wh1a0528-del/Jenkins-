@@ -2,23 +2,17 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'maven'
-        jdk 'java'
-    }
-
     stages {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/24wh1a0528-del/Jenkins.git',
-                    credentialsId: 'pipeline key'
+                    url: 'https://github.com/24wh1a0528-del/Jenkins.git'
             }
         }
 
         stage('Build & Test') {
             steps {
-                bat 'mvn clean install'
+                sh 'mvn clean install'
             }
         }
     }
