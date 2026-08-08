@@ -1,33 +1,20 @@
+
 pipeline {
-agent any
+    agent any
 
-tools {
-    maven 'maven'
-    jdk 'java'
-}
-
-stages {
-    stage('Build & Test') {
-        steps {
-            echo 'Jenkins pipeline is working successfully!'
-            sh 'java -version'
-            sh 'mvn -version'
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/24wh1a0528-del/Jenkins.git'
+            }
         }
-    }
 
-    stage('Deploy (Optional)') {
-        steps {
-            echo 'Deployment stage (add steps if needed)'
+        stage('Build & Test') {
+            steps {
+                sh 'mvn clean install'
+            }
         }
     }
 }
 
-post {
-    success {
-        echo 'Pipeline completed successfully!'
-    }
-    failure {
-        echo 'Build failed. Check logs above.'
-    }
-}
-}
